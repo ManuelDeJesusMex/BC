@@ -1,0 +1,58 @@
+﻿<Window x:Class="Inventario_Hotel.Views.AgregarProducto"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Inventario_Hotel.Views"
+        mc:Ignorable="d"
+        Title="AgregarProducto" Height="580" Width="800">
+    <Window.Resources>
+        <BooleanToVisibilityConverter x:Key="BoolToVisConverter"/>
+    </Window.Resources>
+
+    <Grid Margin="20,10,20,20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" MinHeight="50"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="Auto"/>
+        </Grid.ColumnDefinitions>
+
+        <!-- Agregar the top Aligh -->
+        <TextBlock Text="Agregar Producto" FontSize="20" FontWeight="Bold" Margin="0,0,0,10"/>
+
+        <!-- Image at the top center -->
+        <Image Source="/Views/Logo.jpeg" Grid.Row="0" HorizontalAlignment="Center" Margin="0,10,0,10" Width="132" />
+
+        <!-- Form -->
+        <Border Padding="10" Background="White" CornerRadius="5" Margin="0,79,0,0" Grid.Column="0" Grid.RowSpan="3">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+
+                <StackPanel Grid.Row="0" Margin="10">
+                    <TextBlock Text="Código:" FontWeight="Bold" Margin="0,0,0,5" Width="400"/>
+                    <TextBox x:Name="txtCodigo" Margin="5" Width="304" Height="30"/>
+                    <TextBlock Text="Descripción:" FontWeight="Bold" Margin="10,10,0,5" Width="400"/>
+                    <TextBox x:Name="txtDescripcion" Margin="5" Width="304" Height="30"/>
+                    <TextBlock Text="Cantidad en Inventario:" FontWeight="Bold" Margin="10,10,0,5" Width="400"/>
+                    <TextBox x:Name="txtPieza" Margin="5" Width="298" Height="30"/>
+                    <TextBlock Text="Stock Mínimo:" FontWeight="Bold" Margin="10,10,0,5" Width="400"/>
+                    <TextBox x:Name="txtMinPiezas" Margin="5" Width="304" Height="30"/>
+                    <TextBlock Text="Stock Máximo:" FontWeight="Bold" Margin="10,10,0,5" Width="400"/>
+                    <TextBox x:Name="txtMaxPiezas" Margin="5" Width="304" Height="30"/>
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Top" Margin="0,20,0,0">
+                    <Button Content="Aceptar" Width="160" Margin="5" Background="#32CD32" Foreground="White" FontWeight="Bold" Click="btnAdd_Click_1"/>
+                    <Button Content="Menú" Width="160" Margin="5" Click="Menu_Click" Background="#32CD32" Foreground="White"/>
+                </StackPanel>
+            </Grid>
+        </Border>
+    </Grid>
+</Window>
