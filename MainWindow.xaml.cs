@@ -24,7 +24,9 @@ namespace Inventario_Hotel
     public partial class MainWindow : Window
     {
         private string userRole;
-        private const string predefinedPassword = "1234";
+        private const string predefinedPasswordSA = "1234";
+        private const string predefinedPasswordAd = "M45ft";
+
 
         public MainWindow()
         {
@@ -37,7 +39,7 @@ namespace Inventario_Hotel
         {
             string password = txtPassword.Password.ToString();
 
-            if (password == predefinedPassword)
+            if (password == predefinedPasswordSA)
             {
                 // Simula una respuesta de login
                 var response = services.LoginWithPredefinedPassword();

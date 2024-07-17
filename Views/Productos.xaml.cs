@@ -24,9 +24,23 @@ namespace Inventario_Hotel.Views
     /// </summary>
     public partial class Productos : Window, INotifyPropertyChanged
     {
+        private bool _isPanelVisible;
+        public bool IsPanelVisible
+        {
+            get => _isPanelVisible;
+            set
+            {
+                _isPanelVisible = value;
+                OnPropertyChanged();
+            }
+        }
+
         private CrudProducto _crudProducto;
         private ObservableCollection<Producto> _productos;
         private Producto _selectedProducto;
+
+
+     
 
         public ObservableCollection<Producto> ProductosList
         {
@@ -56,7 +70,16 @@ namespace Inventario_Hotel.Views
             BtnDelete = new RelayCommand<Producto>(async (producto) => await DeleteProductoAsync(producto));
             DataContext = this;
             CargarProductosAsync();
+            DataContext = this;
+            IsPanelVisible = true;
         }
+
+
+        private void TogglePanelButton_Click(object sender, RoutedEventArgs e)
+        {
+            IsPanelVisible = !IsPanelVisible;
+        }
+
 
         public ICommand BtnUpdate { get; }
         public ICommand BtnDelete { get; }
@@ -217,7 +240,12 @@ namespace Inventario_Hotel.Views
             sesion.Show();
             Close();
         }
+
+
     }
+
+
+
 
 }
 
