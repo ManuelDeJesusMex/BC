@@ -2,11 +2,16 @@
 using Inventario_Hotel.Views;
 using Microsoft.EntityFrameworkCore;
 using MySql.Data.MySqlClient;
+using PdfSharp.Drawing.Layout;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection.Metadata;
 using System.Text;
 using System.Threading.Tasks;
+using PdfSharp.Pdf;
+using MigraDoc.DocumentObjectModel;
+using MigraDoc.Rendering;
 using static Inventario_Hotel.Context.AplicationDbContext;
 
 namespace Inventario_Hotel.Services
@@ -119,6 +124,79 @@ namespace Inventario_Hotel.Services
             }
 
             return distance[source.Length, target.Length];
+        }
+        public async Task<List<int>> GetAniosDisponiblesAsync()
+        {
+            return await _context.Products
+                                 .Select(p => p.FechaEntrada.Year)
+                                 .Distinct()
+                                 .ToListAsync();
+        }
+
+        // Método para obtener los meses disponibles según el año
+        public async Task<List<int>> GetMesesPorAnioAsync(int anio)
+        {
+            return await _context.Products
+                                 .Where(p => p.FechaEntrada.Year == anio)
+                                 .Select(p => p.FechaEntrada.Month)
+                                 .Distinct()
+                                 .ToListAsync();
+        }
+
+        // Método para obtener los datos del reporte
+        public async Task<List<Producto>> GetProductosPorMesAsync(int anio, int mes)
+        {
+            return await _context.Products
+                                 .Where(p => p.FechaEntrada.Year == anio && p.FechaEntrada.Month == mes)
+                                 .ToListAsync();
+        }
+
+        // Método para generar el reporte PDF
+        public async Task GenerarReportePDFAsync(int anio, int mes)
+        {
+            var productos = await GetProductosPorMesAsync(anio, mes);
+
+            if (productos.Count == 0)
+            {
+                throw new InvalidOperationException("No se encontraron datos para generar el reporte.");
+            }
+
+            Document document = new Document();
+            Section section = document.AddSection();
+
+            // Título del reporte
+            section.AddParagraph("Reporte de Productos").Format.Font.Size = 18;
+            section.AddParagraph($"Año: {anio} - Mes: {mes}").Format.Font.Size = 14;
+            section.AddParagraph("Fecha de generación: " + DateTime.Now.ToString("dd/MM/yyyy"));
+
+            // Tabla de datos
+            var table = section.AddTable();
+            table.Borders.Width = 0.75;
+            table.AddColumn("4cm").Format.Alignment = ParagraphAlignment.Center;
+            table.AddColumn("6cm").Format.Alignment = ParagraphAlignment.Center;
+            table.AddColumn("2cm").Format.Alignment = ParagraphAlignment.Center;
+
+            var headerRow = table.AddRow();
+            headerRow.Cells[0].AddParagraph("Código");
+            headerRow.Cells[1].AddParagraph("Descripción");
+            headerRow.Cells[2].AddParagraph("Piezas");
+
+            foreach (var producto in productos)
+            {
+                var row = table.AddRow();
+                row.Cells[0].AddParagraph(producto.Codigo.ToString());
+                row.Cells[1].AddParagraph(producto.Descripcion);
+                row.Cells[2].AddParagraph(producto.Pieza.ToString());
+            }
+
+            PdfDocumentRenderer renderer = new PdfDocumentRenderer(true)
+            {
+                Document = document
+            };
+            renderer.RenderDocument();
+
+            string filename = $"Reporte_{anio}_{mes}.pdf";
+            renderer.PdfDocument.Save(filename);
         }
     }
 }

@@ -47,9 +47,6 @@ namespace InventarioHotel.Migrations
                     b.Property<int>("Pieza")
                         .HasColumnType("int");
 
-                    b.Property<int>("PiezasPorUnidad")
-                        .HasColumnType("int");
-
                     b.HasKey("Id");
 
                     b.ToTable("Products");

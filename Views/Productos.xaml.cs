@@ -190,6 +190,12 @@ namespace Inventario_Hotel.Views
                 _execute((T)parameter);
             }
         }
+        private async void BtnGR_Click (object sender, EventArgs e)
+        {
+            GenerarReporte g = new GenerarReporte();
+            g.Show();
+            this.Close();
+        }
 
         private async void tbnBuscar_Click(object sender, RoutedEventArgs e)
         {

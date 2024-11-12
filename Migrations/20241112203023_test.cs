@@ -7,7 +7,7 @@ using MySql.EntityFrameworkCore.Metadata;
 namespace InventarioHotel.Migrations
 {
     /// <inheritdoc />
-    public partial class cris : Migration
+    public partial class test : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -25,7 +25,6 @@ namespace InventarioHotel.Migrations
                     Descripcion = table.Column<string>(type: "longtext", nullable: false),
                     FechaEntrada = table.Column<DateTime>(type: "datetime(6)", nullable: false),
                     FechaSalida = table.Column<DateTime>(type: "datetime(6)", nullable: true),
-                    PiezasPorUnidad = table.Column<int>(type: "int", nullable: false),
                     Pieza = table.Column<int>(type: "int", nullable: false),
                     MinPiezas = table.Column<int>(type: "int", nullable: false),
                     MaxPiezas = table.Column<int>(type: "int", nullable: false)

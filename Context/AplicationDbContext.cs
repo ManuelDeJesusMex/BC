@@ -13,6 +13,7 @@ namespace Inventario_Hotel.Context
         public class InventoryContext : DbContext
         {
             public DbSet<Producto> Products { get; set; }
+            public DbSet<Almacenista> Almacenistas { get; set; }
 
             protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
             {

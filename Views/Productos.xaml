@@ -49,6 +49,9 @@
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
                         <Button Content="Agregar Producto" Width="144" Margin="8" Click="Agregar_Click"/>
                     </StackPanel>
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
+                        <Button Name="Reporte" Content="Reportes" Width="144" Margin="8" Click="BtnGR_Click"/>
+                    </StackPanel>
                 </StackPanel>
             </Border>
             <TextBlock Text="Movimientos" Margin="24"/>

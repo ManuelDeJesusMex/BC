@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace InventarioHotel.Migrations
 {
     [DbContext(typeof(AplicationDbContext.InventoryContext))]
-    [Migration("20240628163022_cris")]
-    partial class cris
+    [Migration("20241112203023_test")]
+    partial class test
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -48,9 +48,6 @@ namespace InventarioHotel.Migrations
                         .HasColumnType("int");
 
                     b.Property<int>("Pieza")
-                        .HasColumnType("int");
-
-                    b.Property<int>("PiezasPorUnidad")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
