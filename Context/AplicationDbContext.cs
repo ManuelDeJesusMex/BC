@@ -17,7 +17,7 @@ namespace Inventario_Hotel.Context
 
             protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
             {
-                optionsBuilder.UseMySQL("Server=localhost; database=InventarioHotel; user=root; password=;");
+                optionsBuilder.UseMySQL("Server=localhost; database=InventarioHotel; user=root; password=arenaquesito;");
             }
         }
     }

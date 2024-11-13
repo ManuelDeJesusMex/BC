@@ -13,6 +13,8 @@ using PdfSharp.Pdf;
 using MigraDoc.DocumentObjectModel;
 using MigraDoc.Rendering;
 using static Inventario_Hotel.Context.AplicationDbContext;
+using Document = MigraDoc.DocumentObjectModel.Document;
+using System.IO;
 
 namespace Inventario_Hotel.Services
 {
@@ -197,6 +199,12 @@ namespace Inventario_Hotel.Services
 
             string filename = $"Reporte_{anio}_{mes}.pdf";
             renderer.PdfDocument.Save(filename);
+
+            if (File.Exists(filename))
+            {
+                System.Diagnostics.Process.Start("explorer.exe", filename);
+            }
+
         }
     }
 }
