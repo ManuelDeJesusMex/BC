@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using MySql.Data.MySqlClient;
 
 namespace Inventario_Hotel.Context
 {
@@ -17,7 +18,7 @@ namespace Inventario_Hotel.Context
 
             protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
             {
-                optionsBuilder.UseMySQL("Server=localhost; database=InventarioHotel; user=root; password=arenaquesito;");
+                optionsBuilder.UseMySQL("Server=bsbaye9m1zq9tmfw6egq-mysql.services.clever-cloud.com; database=bsbaye9m1zq9tmfw6egq; user=uhqcu4f66e13aovn; password=oalmMP7fdubenbBEazI8; port=3306;");
             }
         }
     }
