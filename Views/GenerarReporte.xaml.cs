@@ -68,5 +68,12 @@ namespace Inventario_Hotel.Views
                 MessageBox.Show("Por favor, seleccione un año y un mes.");
             }
         }
+        private async void Salir_Click (object sender, RoutedEventArgs e)
+        {
+            Productos p = new Productos();
+
+            p.Show();
+            this.Close();
+        }
     }
 }

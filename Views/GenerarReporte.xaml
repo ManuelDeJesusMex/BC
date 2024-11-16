@@ -16,7 +16,9 @@
             <ListBox x:Name="lbMeses" />
 
             <Button Content="Generar Reporte" Click="GenerarReporte_Click" Margin="0,20,0,0"/>
+            
         </StackPanel>
+        <Button Content="Salir" Click="Salir_Click" Margin="19,360,603,42"/>
         <Image Source="/Views/Logo.jpeg" Margin="321,16,321,372" RenderTransformOrigin="2.19,1.106"/>
 
     </Grid>
